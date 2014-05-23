@@ -1,0 +1,14 @@
+# OSX
+.DS_Store
+
+# Eclipse
+.classpath
+.project
+.tomcatplugin
+.settings/
+/work
+/bin
+
+# Emacs backup files
+*~
+\#*\#/bin
