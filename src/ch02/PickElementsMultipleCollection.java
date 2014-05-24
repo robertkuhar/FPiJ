@@ -18,9 +18,9 @@ public class PickElementsMultipleCollection {
     public static void main( final String[] args ) {
         {
             final long countFriendsStartN = friends.stream().filter( name -> name.startsWith( "N" ) ).count();
-
+            // Yuk..
             final long countEditorsStartN = editors.stream().filter( name -> name.startsWith( "N" ) ).count();
-
+            // Yuk.
             final long countComradesStartN = comrades.stream().filter( name -> name.startsWith( "N" ) ).count();
 
             System.out.println( countFriendsStartN );
@@ -29,6 +29,7 @@ public class PickElementsMultipleCollection {
         }
 
         {
+            // Thats better...
             final Predicate<String> startsWithN = name -> name.startsWith( "N" );
 
             final long countFriendsStartN = friends.stream().filter( startsWithN ).count();
