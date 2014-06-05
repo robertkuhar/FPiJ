@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 
 public class Compare {
 
@@ -34,6 +35,10 @@ public class Compare {
         // all System.out.printf this
         people.stream().min( compareAscending ).ifPresent( p -> System.out.printf( "youngest %s\n", p ) );
         people.stream().max( compareAscending ).ifPresent( p -> System.out.printf( "oldest %s\n", p ) );
+
+        final Function<Person, String> byName = person -> person.name;
+        final Function<Person, Integer> byAge = person -> person.age;
+        printPeople( "ascendingByAgeThenName", sortORama( people, Comparator.comparing( byAge ).thenComparing( byName ) ) );
     }
 
     /**
