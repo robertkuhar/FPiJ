@@ -12,3 +12,4 @@
 # Emacs backup files
 *~
 \#*\#/bin
+/sample.txt
