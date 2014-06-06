@@ -38,5 +38,8 @@ public class AssetUtilsTest {
         }
         int sumOfStockAssetsLessThanFive = AssetUtil.totalAssetValues( assets, asset -> asset.type == STOCK && asset.value < 5 );
         assertEquals( 4, sumOfStockAssetsLessThanFive );
+
+        int sumOfEvenAssets = AssetUtil.totalAssetValues( assets, asset -> asset.value % 2 == 0 );
+        assertEquals( 30, sumOfEvenAssets );
     }
 }
