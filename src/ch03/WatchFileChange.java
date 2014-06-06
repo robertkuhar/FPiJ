@@ -7,21 +7,27 @@ import java.nio.file.Paths;
 import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class WatchFileChange {
     public static void main( String[] args ) {
+        System.out.println( "begin" );
         new Thread( ( ) -> watchFileChange() ).start();
         final File file = new File( "sample.txt" );
         try {
             file.createNewFile();
-            Thread.sleep( 5000 );
+            Thread.sleep( 2000 );
+            System.out.println( file.getName() + " lastModified " + new Date( file.lastModified() ) );
             file.setLastModified( System.currentTimeMillis() );
+            Thread.sleep( 2000 );
+            System.out.println( file.getName() + " lastModified " + new Date( file.lastModified() ) );
         } catch ( IOException e ) {
             e.printStackTrace();
         } catch ( InterruptedException e ) {
             e.printStackTrace();
         }
+        System.out.print( "end" );
     }
 
     public static void watchFileChange() {
