@@ -7,4 +7,9 @@ public class AssetUtil {
         int totalAssetValues = assets.stream().mapToInt( asset -> asset.value ).sum();
         return totalAssetValues;
     }
+
+    public static int totalAssetValues( final List<Asset> assets, final Asset.AssetType type ) {
+        int totalAssetValues = assets.stream().filter( asset -> asset.type == type ).mapToInt( asset -> asset.value ).sum();
+        return totalAssetValues;
+    }
 }
