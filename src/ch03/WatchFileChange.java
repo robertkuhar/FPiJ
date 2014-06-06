@@ -20,8 +20,8 @@ public class WatchFileChange {
             Thread.sleep( 2000 );
             System.out.println( file.getName() + " lastModified " + new Date( file.lastModified() ) );
             file.setLastModified( System.currentTimeMillis() );
-            Thread.sleep( 2000 );
             System.out.println( file.getName() + " lastModified " + new Date( file.lastModified() ) );
+            Thread.sleep( 2000 );
         } catch ( IOException e ) {
             e.printStackTrace();
         } catch ( InterruptedException e ) {
@@ -32,9 +32,9 @@ public class WatchFileChange {
 
     public static void watchFileChange() {
         try {
+            // We're not watching the file, we're watching the directory
             final Path path = Paths.get( "." );
             final WatchService watchService = path.getFileSystem().newWatchService();
-
             path.register( watchService, StandardWatchEventKinds.ENTRY_MODIFY );
 
             System.out.println( "Report any file changed within next 1 minute..." );
@@ -42,7 +42,9 @@ public class WatchFileChange {
             final WatchKey watchKey = watchService.poll( 1, TimeUnit.MINUTES );
 
             if ( watchKey != null ) {
-                watchKey.pollEvents().stream().forEach( event -> System.out.println( event.context() ) );
+                watchKey.pollEvents().stream().forEach( event -> {
+                    System.out.println( event.context() );
+                } );
             }
         } catch ( InterruptedException | IOException ex ) {
             System.out.println( ex );
