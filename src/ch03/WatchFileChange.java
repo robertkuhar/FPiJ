@@ -27,7 +27,7 @@ public class WatchFileChange {
         } catch ( InterruptedException e ) {
             e.printStackTrace();
         }
-        System.out.print( "end" );
+        System.out.println( "end" );
     }
 
     public static void watchFileChange() {
