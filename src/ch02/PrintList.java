@@ -37,7 +37,9 @@ public class PrintList {
         System.out.println( "//" + "END:JOIN_OUTPUT" );
 
         System.out.println( "//" + "START:MAP_JOIN_OUTPUT" );
-        System.out.println( friends.stream().map( String::toUpperCase ).collect( joining( ", " ) ) );
+        System.out.println( friends.stream()
+                .map( String::toUpperCase )
+                .collect( joining( ", " ) ) );
         System.out.println( "//" + "END:MAP_JOIN_OUTPUT" );
 
     }

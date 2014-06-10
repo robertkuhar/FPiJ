@@ -33,9 +33,8 @@ public class PickAnElement {
 
     public static void functionalPickName( final List<String> names, final String startingLetter ) {
         // BobK. Hmmm. We have to walk the whole collection and then
-        // .findFirst()!?
-        final Optional<String> foundName = 
-                names.stream()
+        // .findFirst()!? P35 says "NO!"
+        final Optional<String> foundName = names.stream()
                 .filter( name -> name.startsWith( startingLetter ) )
                 .findFirst();
         System.out.println( String.format( "A name starting with %s: %s", startingLetter, foundName.orElse( "No name found" ) ) );
