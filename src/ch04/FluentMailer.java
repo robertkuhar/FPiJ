@@ -41,7 +41,9 @@ public class FluentMailer {
     }
 
     public static void main( final String[] args ) {
-        FluentMailer.send( mailer -> mailer.from( "build@agiledeveloper.com" )
+        // BobK: Where the fuck did mailer come from (or bob as the case may
+        // be)? How is it that bob is an instanceof FluentMailer?
+        FluentMailer.send( bob -> bob.from( "build@agiledeveloper.com" )
                 .to( "venkats@agiledeveloper.com" )
                 .subject( "build notification" )
                 .body( "...much better..." ) );
