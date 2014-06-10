@@ -8,32 +8,43 @@
  ***/
 package ch04;
 
-public class MailBuilder {
-    public MailBuilder from( final String address ) {
+import java.util.function.Consumer;
+
+public class FluentMailer {
+    private FluentMailer() {
+    }
+
+    public FluentMailer from( final String address ) {
+        /* ... */
         return this;
     }
 
-    public MailBuilder to( final String address ) {
+    public FluentMailer to( final String address ) {
+        /* ... */
         return this;
     }
 
-    public MailBuilder subject( final String line ) {
+    public FluentMailer subject( final String line ) {
+        /* ... */
         return this;
     }
 
-    public MailBuilder body( final String message ) {
+    public FluentMailer body( final String message ) {
+        /* ... */
         return this;
     }
 
-    public void send() {
+    public static void send( final Consumer<FluentMailer> block ) {
+        final FluentMailer mailer = new FluentMailer();
+        block.accept( mailer );
         System.out.println( "sending..." );
     }
 
     public static void main( final String[] args ) {
-        MailBuilder mailer = new MailBuilder().from( "build@agiledeveloper.com" )
+        FluentMailer.send( mailer -> mailer.from( "build@agiledeveloper.com" )
                 .to( "venkats@agiledeveloper.com" )
                 .subject( "build notification" )
-                .body( "...your code sucks..." );
-        mailer.send();
+                .body( "...much better..." ) );
     }
+
 }

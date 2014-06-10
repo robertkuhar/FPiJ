@@ -20,7 +20,10 @@ public class AssetUtil {
     }
 
     public static int totalAssetValues( final List<Asset> assets, final Predicate<Asset> assetSelector ) {
-        int totalAssetValues = assets.stream().filter( assetSelector ).mapToInt( asset -> asset.value ).sum();
+        int totalAssetValues = assets.stream()
+                .filter( assetSelector )
+                .mapToInt( asset -> asset.value )
+                .sum();
         return totalAssetValues;
     }
 }

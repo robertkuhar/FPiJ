@@ -25,7 +25,9 @@ public class Camera {
 
     @SafeVarargs
     public final void setFilters( final Function<Color, Color>... filters ) {
-        filter = Stream.of( filters ).reduce( ( filter, next ) -> filter.compose( next ) ).orElse( color -> color );
+        filter = Stream.of( filters )
+                .reduce( ( filter, next ) -> filter.compose( next ) )
+                .orElse( color -> color );
     }
 
     public Color capture( final Color inputColor ) {
