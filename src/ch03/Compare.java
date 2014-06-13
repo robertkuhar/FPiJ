@@ -40,12 +40,17 @@ public class Compare {
 
         // Argh. Too bad we don't get partially applied functions then I could
         // all System.out.printf this
-        people.stream().min( compareAscending ).ifPresent( p -> System.out.printf( "youngest %s\n", p ) );
-        people.stream().max( compareAscending ).ifPresent( p -> System.out.printf( "oldest %s\n", p ) );
+        people.stream()
+                .min( compareAscending )
+                .ifPresent( p -> System.out.printf( "youngest %s\n", p ) );
+        people.stream()
+                .max( compareAscending )
+                .ifPresent( p -> System.out.printf( "oldest %s\n", p ) );
 
         final Function<Person, String> byName = person -> person.name;
         final Function<Person, Integer> byAge = person -> person.age;
-        printPeople( "ascendingByAgeThenName", sortORama( people, Comparator.comparing( byAge ).thenComparing( byName ) ) );
+        printPeople( "ascendingByAgeThenName", sortORama( people, Comparator.comparing( byAge )
+                .thenComparing( byName ) ) );
     }
 
     /**
@@ -58,7 +63,9 @@ public class Compare {
      * @return
      */
     static List<Person> sortORama( List<Person> list, Comparator<Person> c ) {
-        return list.stream().sorted( c ).collect( toList() );
+        return list.stream()
+                .sorted( c )
+                .collect( toList() );
     }
 
     // BobK doesn't think the compareByAge method belongs on Person.

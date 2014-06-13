@@ -21,12 +21,14 @@ public class IterateString {
 
     static void lambdaStringIterate_ctoi( final String s ) {
         System.out.println( "lambdaStringIteration( s: " + s + " )" );
-        s.chars().forEach( ch -> System.out.println( ch ) );
+        s.chars()
+                .forEach( ch -> System.out.println( ch ) );
     }
 
     static void methodRefStringIterate_ctoi( final String s ) {
         System.out.println( "methodReferenceIteration( s: " + s + " )" );
-        s.chars().forEach( System.out::println );
+        s.chars()
+                .forEach( System.out::println );
     }
 
     private static void printChar( int i ) {
@@ -35,21 +37,28 @@ public class IterateString {
 
     private static void myMethodRefStringIterage( String s ) {
         System.out.println( "myMethodRefStringIterage( s: " + s + " )" );
-        s.chars().forEach( IterateString::printChar );
+        s.chars()
+                .forEach( IterateString::printChar );
     }
 
     private static void mapToObjStringIterate( String s ) {
         System.out.println( "mapToObjStringIterate( s: " + s + " )" );
-        s.chars().mapToObj( ch -> Character.valueOf( (char) ch ) ).forEach( System.out::println );
+        s.chars()
+                .mapToObj( ch ->  (char) ch  )
+                .forEach( System.out::println );
     }
 
     private static void filterDigitsStringIterate( String s ) {
         System.out.println( "filterDigitsStringIterate( s: " + s + " )" );
-        s.chars().filter( ch -> Character.isDigit( ch ) ).forEach( i -> printChar( i ) );
+        s.chars()
+                .filter( ch -> Character.isDigit( ch ) )
+                .forEach( i -> printChar( i ) );
     }
 
     private static void methodRefFilterDigitsStringIterate( String s ) {
         System.out.println( "methodRefFilterDigitsStringIterate( s: " + s + " )" );
-        s.chars().filter( ch -> Character.isDigit( ch ) ).forEach( IterateString::printChar );
+        s.chars()
+                .filter( ch -> Character.isDigit( ch ) )
+                .forEach( IterateString::printChar );
     }
 }

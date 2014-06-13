@@ -28,28 +28,40 @@ public class OlderThan20 {
                 new Person( "Greg", 35 ) );
 
         List<Person> olderThan20_a = new ArrayList<>();
-        people.stream().filter( person -> person.age > 20 ).forEach( person -> olderThan20_a.add( person ) );
+        people.stream()
+                .filter( person -> person.age > 20 )
+                .forEach( person -> olderThan20_a.add( person ) );
         printPeople( "don't trust olderThan20_a", olderThan20_a );
 
-        List<Person> olderThan20_b = people.stream().filter( person -> person.age > 20 )
+        List<Person> olderThan20_b = people.stream()
+                .filter( person -> person.age > 20 )
                 .collect( ArrayList::new, ArrayList::add, ArrayList::addAll );
         printPeople( "don't trust olderThan20_b", olderThan20_b );
 
-        List<Person> olderThan20_c = people.stream().filter( person -> person.age > 20 ).collect( Collectors.toList() );
+        List<Person> olderThan20_c = people.stream()
+                .filter( person -> person.age > 20 )
+                .collect( Collectors.toList() );
         printPeople( "don't trust olderThan20_c", olderThan20_c );
 
-        Map<Integer, List<Person>> peopleByAge = people.stream().collect( Collectors.groupingBy( person -> person.age ) );
+        Map<Integer, List<Person>> peopleByAge = people.stream()
+                .collect( Collectors.groupingBy( person -> person.age ) );
         System.out.println( "Grouped by age: " + peopleByAge );
 
-        Map<Integer, List<String>> nameOfPeopleByAge = people.stream().collect(
-                Collectors.groupingBy( person -> person.age, Collectors.mapping( person -> person.name, Collectors.toList() ) ) );
+        Map<Integer, List<String>> nameOfPeopleByAge = people.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                person -> person.age,
+                                Collectors.mapping( person -> person.name, Collectors.toList() ) ) );
         System.out.println( "People grouped by age: " + nameOfPeopleByAge );
 
         // Group the names by their first char and then get the oldest person in
         // each group
         Comparator<Person> byAge = Comparator.comparing( person -> person.age );
-        Map<Character, Optional<Person>> oldestPersonOfEachLetter = people.stream().collect(
-                Collectors.groupingBy( person -> person.name.charAt( 0 ), Collectors.reducing( BinaryOperator.maxBy( byAge ) ) ) );
+        Map<Character, Optional<Person>> oldestPersonOfEachLetter = people.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                person -> person.name.charAt( 0 ),
+                                Collectors.reducing( BinaryOperator.maxBy( byAge ) ) ) );
         System.out.println( "Oldest person of each letter:" );
         System.out.println( oldestPersonOfEachLetter );
     }
