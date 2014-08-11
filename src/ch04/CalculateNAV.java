@@ -18,6 +18,7 @@ public class CalculateNAV {
     }
 
     public BigDecimal computeStockWorth( final String ticker, final int shares ) {
+        // Note that apply method is on Function
         return priceFinder.apply( ticker ).multiply( BigDecimal.valueOf( shares ) );
     }
 }
