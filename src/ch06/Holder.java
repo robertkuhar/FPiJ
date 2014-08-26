@@ -6,7 +6,7 @@
  * We make no guarantees that this code is fit for any purpose. 
  * Visit http://www.pragmaticprogrammer.com/titles/vsjava8 for more book information.
  ***/
-package ch05;
+package ch06;
 
 import java.util.function.Supplier;
 
@@ -18,6 +18,9 @@ public class Holder {
     }
 
     private synchronized Heavy createAndCacheHeavy() {
+        /*
+         * BobK: I am wondering if this Factory actually belongs here?
+         */
         class HeavyFactory implements Supplier<Heavy> {
             private final Heavy heavyInstance = new Heavy();
 

@@ -6,7 +6,7 @@
  * We make no guarantees that this code is fit for any purpose. 
  * Visit http://www.pragmaticprogrammer.com/titles/vsjava8 for more book information.
  ***/
-package ch05;
+package ch06;
 
 public class HolderNaive {
     private Heavy heavy;
