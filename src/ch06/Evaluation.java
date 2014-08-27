@@ -19,7 +19,7 @@ public class Evaluation {
 
     public static void simulateTimeConsumingOp( final int millseconds ) {
         try {
-            Thread.sleep( 2000 );
+            Thread.sleep( millseconds );
         } catch ( Exception ex ) {
             throw new RuntimeException( ex );
         }

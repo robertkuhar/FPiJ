@@ -11,31 +11,29 @@ package ch06;
 import java.util.function.Supplier;
 
 public class Holder {
-    private Supplier<Heavy> heavy = ( ) -> createAndCacheHeavy();
+    class HeavyFactory implements Supplier<Heavy> {
+        private final Heavy heavyInstance = new Heavy();
+
+        public Heavy get() {
+            return heavyInstance;
+        }
+    }
+
+    private Supplier<Heavy> heavySupplier = ( ) -> createAndCacheHeavy();
 
     public Holder() {
         System.out.println( "Holder created" );
     }
 
     private synchronized Heavy createAndCacheHeavy() {
-        /*
-         * BobK: I am wondering if this Factory actually belongs here?
-         */
-        class HeavyFactory implements Supplier<Heavy> {
-            private final Heavy heavyInstance = new Heavy();
-
-            public Heavy get() {
-                return heavyInstance;
-            }
+        if ( !HeavyFactory.class.isInstance( heavySupplier ) ) {
+            heavySupplier = new HeavyFactory();
         }
-        if ( !HeavyFactory.class.isInstance( heavy ) ) {
-            heavy = new HeavyFactory();
-        }
-        return heavy.get();
+        return heavySupplier.get();
     }
 
-    public synchronized Heavy getHeavy() {
-        return heavy.get();
+    public Heavy getHeavy() {
+        return heavySupplier.get();
     }
 
     public static void main( final String[] args ) {

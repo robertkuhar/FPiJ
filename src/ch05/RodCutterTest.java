@@ -47,7 +47,8 @@ public class RodCutterTest {
     @Test
     public void ConciseExTest() {
         rodCutter.setPrices( prices );
-        assertThrows( RodCutterException.class, ( ) -> rodCutter.maxProfit( 0 ) );
+        Runnable r = ( ) -> rodCutter.maxProfit( 0 );
+        assertThrows( RodCutterException.class, r );
     }
 
     @Test
